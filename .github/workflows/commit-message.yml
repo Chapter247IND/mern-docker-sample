@@ -1,0 +1,6 @@
+name: 'Commit Message Check'
+on:
+  push:
+jobs:
+  check-semantic-commit:
+    uses: Chapter247IND/shared-workflow/.github/workflows/commit-message.yml@main
