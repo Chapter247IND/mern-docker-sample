@@ -1,0 +1,36 @@
+name: sample
+services:
+  mongo:
+    image: mongo:latest
+    container_name: sample-mongo
+    restart: always
+    volumes:
+      - mongo_data_db:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - sample
+
+  api:
+    build: ./node-app
+    image: node-api
+    container_name: node-api
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - sample
+  ui:
+    depends_on:
+      - api
+    build: ./react-app
+    image: react-app
+    restart: always
+    ports:
+      - 80:80
+
+volumes:
+  mongo_data_db:
+
+networks:
+  sample:
