@@ -16,6 +16,8 @@ services:
     image: node-api
     container_name: node-api
     restart: always
+    volumes:
+      - ${PWD}/node-app/uploads:/app/uploads
     ports:
       - 8000:8000
     networks:
